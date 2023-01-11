@@ -1,5 +1,5 @@
 const TodoList = props => {
-  return(
+  return (
     <section>
       <ul>
         {props.children}

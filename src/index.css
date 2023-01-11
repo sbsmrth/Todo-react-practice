@@ -2,8 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@layer base {
+  body {
+    @apply bg-gradient-to-b;
+    @apply from-black;
+    @apply via-black;
+    @apply to-neutral-900;
+  }
 }
