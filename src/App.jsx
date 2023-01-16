@@ -5,6 +5,9 @@ import { TodoList } from './components/TodoList';
 import { TodoCounter } from './components/TodoCounter';
 import { TodoSearch } from './components/TodoSearch';
 import { useState } from 'react';
+import { Image } from './components/Image';
+
+const url = "https://i.ibb.co/0FfxHjL/ellipse.png";
 
 const App = () => {
 
@@ -59,6 +62,13 @@ const App = () => {
           <Todo key={todo.text} value={todo.text} completed={todo.completed} deleteTodo={deleteTodo} changeTodoState={changeTodoState}></Todo>
         ))}
       </TodoList>
+      <Image url={url} css='w-3 md:w-6 absolute left-20 top-20'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute bottom-20 left-52'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute right-44 bottom-32'></Image>
+      <Image url={url} css='w-3 md:w-6 absolute top-1/2'></Image>
     </article>
     { todos.length != 0 && <TodoButton deleteCompleted={deleteCompleted}></TodoButton> }
   </>;
