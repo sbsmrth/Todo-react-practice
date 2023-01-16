@@ -6,6 +6,6 @@ const TodoList = props => {
       </ul>
     </section>
   );
-}
+};
 
 export { TodoList };
