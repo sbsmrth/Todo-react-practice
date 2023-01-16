@@ -63,9 +63,7 @@ const App = () => {
         ))}
       </TodoList>
       <Image url={url} css='w-3 md:w-6 absolute left-20 top-20'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
       <Image url={url} css='w-3 md:w-6 absolute bottom-20 left-52'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
       <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
       <Image url={url} css='w-3 md:w-6 absolute right-44 bottom-32'></Image>
       <Image url={url} css='w-3 md:w-6 absolute top-1/2'></Image>
