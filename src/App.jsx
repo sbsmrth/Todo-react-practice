@@ -1,4 +1,3 @@
-import './App.css';
 import { Todo } from './components/Todo';
 import { TodoButton } from './components/TodoButton';
 import { TodoList } from './components/TodoList';
