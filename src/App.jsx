@@ -1,28 +1,49 @@
-import { Todo } from './components/Todo';
-import { TodoButton } from './components/TodoButton';
-import { TodoList } from './components/TodoList';
-import { TodoCounter } from './components/TodoCounter';
-import { TodoSearch } from './components/TodoSearch';
-import { useState } from 'react';
-import { Image } from './components/Image';
+import { useState } from "react";
+import { AppUI } from "./components/AppUI/AppUI";
+
+const useLocalStorage = (itemName, initialValue)=> {
+  const storeData = localStorage.getItem(itemName);
+  
+  const defaultItem = JSON.parse(storeData) || initialValue;
+
+  const [item, setItem] = useState(defaultItem);
+
+  const setNewTodos = eItem => {
+    const stringifiedTodos = JSON.stringify(eItem);
+    localStorage.setItem(itemName, stringifiedTodos);
+    setItem(eItem);
+  };
+
+  return [
+    item,
+    setNewTodos
+  ];
+};
 
 const url = "https://i.ibb.co/0FfxHjL/ellipse.png";
 
 const App = () => {
 
-  const [todos, setTodos] = useState([]);
+  const [todos, setNewTodos] = useLocalStorage('TODOS_V1', []);
 
-  const addElement = todo => {
-    if(todo.text) {
-      setTodos([
+  const findTodo = text => {
+    return todos.find(todo => todo.text === text);
+  };
+
+  const addElement = text => {
+    if(!findTodo(text)) {
+      setNewTodos([
         ...todos,
-        todo
+        {
+          text,
+          completed: false
+        }
       ]);
     }
   };
 
   const changeTodoState = todoText => {
-    setTodos(
+    setNewTodos(
       todos.map(todo => {
         if(todo.text === todoText) {
           return { ...todo, completed: !todo.completed };
@@ -32,43 +53,33 @@ const App = () => {
     );
   };
 
-  const completed = () => {
-    const allCompleted = todos.reduce((acc, todo) => {
-      return todo.completed ? acc += 1 : acc;
-    }, 0);
-
-    return allCompleted;
-  };
+  const allCompleted = todos.reduce((acc, todo) => {
+    return todo.completed ? acc += 1 : acc;
+  }, 0);
 
   const deleteTodo = todoText => {
-    setTodos(
+    setNewTodos(
       todos.filter(todo => todo.text != todoText)
     );
   };
 
   const deleteCompleted = () => {
-    setTodos(
+    setNewTodos(
       todos.filter(todo => !todo.completed)
     );
   };
 
-  return <>
-    <TodoCounter completed={completed()} all={todos.length}></TodoCounter>
-    <article className={'mx-auto w-5/6 sm:w-4/6 lg:w-2/6 mt-12 2xl:mt-24 pb-20'}>
-      <TodoSearch addElement={addElement}></TodoSearch>
-      <TodoList>
-        {todos.map(todo => (
-          <Todo key={todo.text} value={todo.text} completed={todo.completed} deleteTodo={deleteTodo} changeTodoState={changeTodoState}></Todo>
-        ))}
-      </TodoList>
-      <Image url={url} css='w-3 md:w-6 absolute left-20 top-20'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute bottom-20 left-52'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute right-20 top-20'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute right-44 bottom-32'></Image>
-      <Image url={url} css='w-3 md:w-6 absolute top-1/2'></Image>
-    </article>
-    { todos.length != 0 && <TodoButton deleteCompleted={deleteCompleted}></TodoButton> }
-  </>;
+  return (
+    <AppUI 
+      allCompleted={allCompleted}
+      addElement={addElement}
+      url={url}
+      deleteTodo={deleteTodo}
+      deleteCompleted={deleteCompleted}
+      changeTodoState={changeTodoState}
+      todos={todos}
+    />
+  );
 };
 
 export default App;

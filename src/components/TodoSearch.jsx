@@ -1,34 +1,22 @@
 import { useState } from "react";
 
-const TodoSearch = ({addElement}) => {
+const TodoSearch = ({ addElement }) => {
 
-  const [todo, setTodo] = useState({
-    text: '',
-    completed: false
-  });
-
-  const handleSubmit = event => {
-    event.preventDefault();
-    event.target.reset();
-  };
+  const [text, setText] = useState('');
 
   const handleKey = event => {
-    if(event.key === 'Enter') {
-      addElement(todo);
+    if(event.key === 'Enter' && text) {
+      addElement(text);
+      setText('');
     };
   };
 
   const getData = event => {
-    setTodo({
-      ...todo,
-      text: event.target.value
-    });
+    setText(event.target.value);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-lg border-b-white border-b">
-      <input onChange={getData} onKeyDown={handleKey} className="w-full outline-0 bg-transparent py-2 px-14 text-white tracking-wider text-center rounded-lg font-bold h-12" placeholder="Write your task" />
-    </form>
+    <input onChange={getData} value={text} onKeyDown={handleKey} className="w-full outline-0 bg-transparent py-2 px-14 border-b-white border-b text-white tracking-wider text-center rounded-lg font-bold h-12" placeholder="Write your task" />
   );
 };
 
