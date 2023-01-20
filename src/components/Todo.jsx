@@ -1,6 +1,6 @@
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { Icon } from "./Icon";
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { Icon } from './Icon';
 
 const Todo = ({ value, completed, deleteTodo, changeTodoState }) => {
   return (

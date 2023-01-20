@@ -1,5 +1,5 @@
-import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
-import { Icon } from "./Icon";
+import { faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
+import { Icon } from './Icon';
 
 const TodoButton = ({ deleteCompleted }) => {
   return (

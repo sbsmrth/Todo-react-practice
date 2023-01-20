@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { AppUI } from "./components/AppUI/AppUI";
+import { useState } from 'react';
+import { AppUI } from './components/AppUI/AppUI';
 
 const useLocalStorage = (itemName, initialValue)=> {
   const storeData = localStorage.getItem(itemName);
@@ -20,7 +20,7 @@ const useLocalStorage = (itemName, initialValue)=> {
   ];
 };
 
-const url = "https://i.ibb.co/0FfxHjL/ellipse.png";
+const url = 'https://i.ibb.co/0FfxHjL/ellipse.png';
 
 const App = () => {
 
